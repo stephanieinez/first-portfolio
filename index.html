@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+    <title>ST</title>
+    <link rel="shortcut icon" href="img/silly.png">
+    <!-- load jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js">
+    </script>
+    <script type = "text/javascript">
+    var chicken_speed = 100;
+    var chicken_stride = 20;
+    var chicken_width = $('#chicken').width();
+    var step_interval = window.setInterval(chickenStep, chicken_speed);
+
+    var window_padding = 160;
+    var window_width = $(window).width() - window_padding;
+
+    function chickenStep() {
+      $('#chicken').toggleClass('left-foot right-foot');
+
+      var current_x = $('#chicken').css('left');
+      current_x = parseInt(current_x);
+
+      chickenIsOnTheEdge(current_x);
+
+      var chickenIsReturning = $('#chicken').hasClass('is-returning');
+
+      var new_x = 0;
+
+      if ( chickenIsReturning ) {
+        new_x = current_x - chicken_stride;
+      } else {
+        new_x = current_x + chicken_stride;
+      }
+
+      new_x += 'px';
+
+      $('#chicken').css({'left': new_x});
+    }
+
+    function chickenIsOnTheEdge(current_x){
+      if ( current_x > window_width - chicken_width ) {
+        flipChicken();
+        $('#chicken').css({'left': window_width - chicken_width});
+      }
+
+      if ( current_x < 0 ) {
+        flipChicken();
+        $('#chicken').css({'left': 0});
+      }
+    }
+
+    function flipChicken(){
+      $('#chicken').toggleClass('is-returning');
+    }
+    </script>
+  </head>
+
+  <body onload="moveImage()">
+    <header id="header">
+      <h1>stephanie tassone</h1>
+      <nav id="nav">
+        <a href="#about">About</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+    <main>
+      <h2 id="blog">Blog</h2>
+      <p> 2017 has marked a year of new beginnings - I have put aside my days as a marketer and have started on a new path to become a frontend developer. This blog will follow my journey.</p>
+      <div class="blog-container">
+        <figure><a href="https://medium.com/@stephanietassone/a-newbie-on-jsunconf-2017-fb626b156b8f" target="_blank"><img class="blog-image" src="img/hamburg-1.jpg" alt="JSUnconf"><figcaption>A Newbie on JSUnconf 2017</figcaption></figure></a>
+        <figure><a href="https://medium.com/@stephanietassone/and-so-it-begins-2a65f1d3e72a" target="_blank"><img class="blog-image" src="img/hellofresh.jpg" alt="HelloFresh"><figcaption>New Beginnings</figcaption></figure></a>
+        <figure><a href="https://medium.com/@stephanietassone/a-newbie-on-jsunconf-2017-fb626b156b8f" target="_blank"><img class="blog-image" src="img/newpost.jpg" alt="New Post"><figcaption>Coming Soon...</figcaption></figure></a>
+        <figure><a href="https://medium.com/@stephanietassone/a-newbie-on-jsunconf-2017-fb626b156b8f" target="_blank"><img class="blog-image" src="img/newpost.jpg" alt="New Post"><figcaption>Coming Soon...</figcaption></figure></a>
+        <figure><a href="https://medium.com/@stephanietassone/a-newbie-on-jsunconf-2017-fb626b156b8f" target="_blank"><img class="blog-image" src="img/newpost.jpg"alt="New Post"><figcaption>Coming Soon...</figcaption></figure></a>
+        <figure><a href="https://medium.com/@stephanietassone/a-newbie-on-jsunconf-2017-fb626b156b8f" target="_blank"><img class="blog-image" src="img/newpost.jpg" alt="New Post"><figcaption>Coming Soon...</figcaption></figure></a>
+      </div>
+      <br/>
+      <br/>
+
+      <h2 id="about">About</h2>
+      <p>I&#39;m Steph, a Berlin&#45;based ex-journalist, communications manager and marketer from Australia. I've recently found myself in the exciting world of web development! I'm currently doing a frontend apprenticeship at <a href="https://www.hellofresh.de" target="_blank";>HelloFresh</a> - working in React.js, Redux and JavaScript.</p>
+      <p>I hold a B.A. in International Studies, a post-graduate diploma in Journalism and five years of industry experience in London and Berlin.</p>
+      <p>Aside from programming, I write web copy, press releases and media kits. Have a look at <a href="http://about.idagio.com/assets/press/press-releases/IDAGIO_Press_Release_Salzburg_August_5_2015.pdf" target="blank">this one</a> I made for IDAGIO or <a href="files/eigerrelease.pdf" target="blank">this one</a> I made for London&#45;based design gallery Eiger.</p>
+      <p>I can competently use Wordpress, <a href="https://medium.com/@stephanietassone" target="_blank">Medium</a>, Mailchimp, <a href="https://github.com/stephanieinez">Github</a>, Photoshop, Sketch, HTML, CSS, Google Analytics and Tag Manager.</p>
+      <p>For the past six months I have been studying the wonderful(&#45;ly difficult) German language. I am currently at B1, aber ich werde jeden Tag besser! I love travelling and the outdoors, taking the opportunity to go exploring at any chance I get. In my spare time I enjoy making silly projects (Check out my <a href="https://stephanieinez.github.io/compliment-insult-generator/">compliments and insult generator</a> if you are ever stuck for words), lying in the sun and going dancing.</p>
+      <p>Why not <a href="mailto:stephanie.tassone@gmail.com" target="_blank">drop me a line</a>&#63; I&#39;d love to hear from you&#33;</p>
+      <br/>
+      <br/>
+
+      <h2 id="contact">Contact</h2>
+      <p>
+        Location: Berlin, DE
+      </p>
+      <p>
+        Languages:</br>English (Native)</br>German (B1)
+      </p>
+      <p>
+        <a href="mailto:stephanie.tassone@gmail.com" target="_blank">Email</a>
+      </p>
+    </main>
+
+    <footer id="footer">
+      <div id="chicken" class="left-foot">
+        <img src="img/chickenleft.png" class="chicken__img chicken__img--left-foot" />
+        <img src="img/chickenright.png" class="chicken__img chicken__img--right-foot" />
+        <img src="img/chickenleft.png" class="chicken__img chicken__img--left-foot chicken__img--returning" />
+        <img src="img/chickenright.png" class="chicken__img chicken__img--right-foot chicken__img--returning" />
+      </div>
+      <p>
+        <a href="https://www.facebook.com/stephanieinez" target="_blank"><img src="img/social-fb.png" title="Add Me" width="26" height="26" alt="Facebook"></a>
+        <a href="mailto:stephanie.tassone@gmail.com" target="_blank"><img src="img/social-mail.png" title="Mail Me" width="26" height="26" alt="Mail"></a>
+        <a href="https://www.linkedin.com/in/stephanie-tassone-b2241b66?trk=hp-identity-photo" target="_blank"><img src="img/social-linkedin.png" title="Link Up" width="26" height="26" alt="Mail"></a>
+        <a href="http://i.giphy.com/3o85xGocUH8RYoDKKs.gif" target="_blank"><img src="img/silly.png" title="Have a Cuppa" width="20" height="20" alt="Silly"></a>
+        <a href="https://www.instagram.com/stephanieinez/" target="_blank"><img src="img/social-insta.png" title="Instagram" width="26" height="26" alt="Instagram"></a>
+      </p>
+    </footer>
+  </body>
+  </html>
